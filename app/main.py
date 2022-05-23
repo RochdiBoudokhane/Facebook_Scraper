@@ -24,7 +24,7 @@ async def read_items(tags):
   return ScrapingPost
 
 @app.get(
-  "/scraping/posts", response_description="List all posts", response_model=List[posts]
+  "/scraping/posts", response_description="List all posts"
 )
 async def list_posts():
     posts = await msg_collection.find().to_list(50)
