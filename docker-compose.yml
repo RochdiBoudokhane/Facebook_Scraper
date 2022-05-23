@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  
+  python:
+    tty: true # Enables debugging capabilities when attached to this container.
+    image: docker.io/bitnami/python:3.8
+    build:
+      context: .
+      dockerfile: app/Dockerfile.py3
+    ports:
+      - 8000:8000
+
+  database:
+    image: mongo
+    container_name: mongodb
+    build:
+      context: .
+      dockerfile: mongo/Dockerfile.py3
+    container_name: 'mongodb' 
+    ports:
+      - '27017-27017'
+      
+  

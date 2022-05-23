@@ -1,0 +1,1 @@
+10 * * * * mongo "mongodb://localhost:27017/Facebook" --username admin --password admin --eval 'db.posts.find().pretty()' >> /var/log/cron_mongodb.log
