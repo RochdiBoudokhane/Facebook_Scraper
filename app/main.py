@@ -10,7 +10,7 @@ app = FastAPI()
 posts = Scraper()
 
 db = client["Facebook"]
-msg_collection = db["postsFa"]
+msg_collection = db["posts"]
 
 
 @app.get("/{tags}")
@@ -23,23 +23,10 @@ async def read_items(tags):
 
   return ScrapingPost
 
-#@app.get(
-#    "/posts"#, response_description="List all posts", response_model=List[PostsModel]
-#)
-#async def list_posts():
-#    students = await msg_collection.find().to_list(50)
-#    return students
-#
-#@app.get("/post")
-#async def fetch_all_todos():
-#    todos = []
-#    cursor = await msg_collection.find({})
-#    async for document in cursor:
-#        todos.append(ToDo(**document))
-#    return todos
-#
-#
-##@app.get("/items/{item_id}")
-##def read_item(item_id: int, q: Union[str, None] = None):
-##    return {"item_id": item_id, "q": q}
-#
+@app.get(
+  "/scraping/posts", response_description="List all posts", response_model=List[posts]
+)
+async def list_posts():
+    posts = await msg_collection.find().to_list(50)
+    return posts
+
